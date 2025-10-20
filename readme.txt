@@ -7,3 +7,5 @@ Real time results
 A product catalog page
 
 
+Group note:
+for my nonpython members: to run this in vs code type python main.py in terminal :) 
