@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import *
+from tkinter import messagebox
 
 #this is the main window for our app
 root = tk.Tk()
@@ -136,11 +136,11 @@ def open_page3():
 
 # main page 
 tk.Label(root, text="Main Page", font=("Arial", 16, "bold")).pack(pady=20)
-quizButton = Button(root, text="Take Skincare quiz", command=open_page1, width=20).pack(pady=5)
+quizButton = tk.Button(root, text="Take Skincare quiz", command=open_page1, width=20).pack(pady=5)
 quizButton.place(x= 400, y= 900)
-catalogueButton = Button(root, text="Product Catalogue", command=open_page2, width=20).pack(pady=5)
+catalogueButton = tk.Button(root, text="Product Catalogue", command=open_page2, width=20).pack(pady=5)
 catalogueButton.place(x= 550, y= 900)
-prodTrackerButton = Button(root, text="Skincare Product Tracker", command=open_page3, width=20).pack(pady=5)
+prodTrackerButton = tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20).pack(pady=5)
 prodTrackerButton.place(x = 600, y = 900)
 
 # Run the app
