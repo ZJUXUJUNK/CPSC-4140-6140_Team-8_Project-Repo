@@ -1,4 +1,9 @@
 import tkinter as tk
+<<<<<<< HEAD
+=======
+import json 
+import datetime
+>>>>>>> 65f76c0 (added save results)
 from tkinter import messagebox
 
 #this is the main window for our app
@@ -7,6 +12,35 @@ root.title("Home page")
 root.geometry("1000x1000")
 #this is to set a light blue background 
 root.configure(bg="#b3e5fc")
+
+# appends quiz results to JSON file
+
+def save_results(username,skin_type, advice):
+
+    # dictionary
+    result = {
+        "username" : username,
+        "skin_type" : skin_type,
+        "advice" : advice,
+        "timestamp" : datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    }
+    
+    # load existing data
+    try:
+        with open("results.json", "r") as f:
+            data = json.load(f)
+    
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = []
+
+    # add new result
+    data.append(result)
+
+    # write back to file
+    with open("results.json", "w") as f:
+        json.dump(data,f , indent=4)
+    
+    print("Your results were saved!")
 
 # Opening the skin care quiz page
 def open_page1():
@@ -108,6 +142,9 @@ def open_page1():
             advice = "Try products with retinol or peptides to support mature skin."
 
         messagebox.showinfo("Quiz Result", f"{result}\n\n{advice}")
+
+        username = "User"
+        save_results(username, skin_type, advice)
 
 
 
