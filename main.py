@@ -128,10 +128,17 @@ def open_page2():
     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
     tk.Button(page2, text="home", command=page2.destroy).pack()
 
-# main oage 
+def open_page3():
+    page3 = tk.Toplevel(root)
+    page3.title("Skincare Usage Tracker")
+    tk.Label(page3, text= "This is where you can track your usage cycle for your skincare products!", font= ("Arial", 14)).pack(pady=30)
+    tk.Button(page3, text="home", command=page3.destroy).pack()
+
+# main page 
 tk.Label(root, text="Main Page", font=("Arial", 16, "bold")).pack(pady=20)
 tk.Button(root, text="Take Skincare quiz", command=open_page1, width=20).pack(pady=5)
 tk.Button(root, text="Product Catalogue", command=open_page2, width=20).pack(pady=5)
+tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20).pack(pady=5)
 
 # Run the app
 root.mainloop()
