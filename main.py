@@ -1,10 +1,11 @@
 import tkinter as tk
+from tkinter import messagebox
 
 #this is the main window for our app
 root = tk.Tk()
 root.title("Home page")
 root.geometry("1000x1000")
-#this is to set a loght blue background 
+#this is to set a light blue background 
 root.configure(bg="#b3e5fc")
 
 # Opening the skin care quiz page
