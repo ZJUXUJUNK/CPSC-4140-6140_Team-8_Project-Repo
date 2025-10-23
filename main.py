@@ -73,8 +73,6 @@ def open_page1():
 
 
 
-
-
     # used chat here to show the result of the quiz
     def submit_quiz():
         answers = [q1.get(), q2.get(), q3.get(), q4.get(), q5.get()]
