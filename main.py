@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
 
 #this is the main window for our app
 root = tk.Tk()
