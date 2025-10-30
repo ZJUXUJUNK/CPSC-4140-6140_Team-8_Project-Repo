@@ -2,6 +2,8 @@ import tkinter as tk
 import json 
 import datetime
 from tkinter import messagebox
+from PIL import Image, ImageTk
+
 
 #this is the main window for our app
 root = tk.Tk()
