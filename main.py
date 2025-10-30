@@ -1,9 +1,6 @@
 import tkinter as tk
-<<<<<<< HEAD
-=======
 import json 
 import datetime
->>>>>>> 65f76c0 (added save results)
 from tkinter import messagebox
 
 #this is the main window for our app
