@@ -162,11 +162,58 @@ def open_page2():
     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
     tk.Button(page2, text="home", command=page2.destroy).pack()
 
+
+
+
+
 def open_page3():
     page3 = tk.Toplevel(root)
     page3.title("Skincare Usage Tracker")
-    tk.Label(page3, text= "This is where you can track your usage cycle for your skincare products!", font= ("Arial", 14)).pack(pady=30)
-    tk.Button(page3, text="home", command=page3.destroy).pack()
+    page3.geometry("600x600")
+
+    tk.Label(page3, text="Track your skincare product usage", font=("Arial", 14, "bold")).pack(pady=20)
+
+    # Load existing usage log
+    try:
+        with open("usage_log.json", "r") as f:
+            usage_log = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        usage_log = {}
+
+    entry_label = tk.Label(page3, text="Enter the products you used today (comma separated):")
+    entry_label.pack(pady=10)
+
+    products_entry = tk.Entry(page3, width=50)
+    products_entry.pack(pady=5)
+
+    def log_usage():
+        products = [p.strip() for p in products_entry.get().split(",") if p.strip()]
+        if not products:
+            messagebox.showwarning("No Entry", "Please enter at least one product.")
+            return
+
+        today = datetime.date.today().isoformat()
+        usage_log[today] = usage_log.get(today, []) + products
+
+        with open("usage_log.json", "w") as f:
+            json.dump(usage_log, f, indent=4)
+
+        messagebox.showinfo("Saved", f"Logged: {', '.join(products)} for {today}")
+        products_entry.delete(0, tk.END)
+        update_display()
+
+    def update_display():
+        display_box.delete(1.0, tk.END)
+        for date, products in sorted(usage_log.items(), reverse=True):
+            display_box.insert(tk.END, f"{date}: {', '.join(products)}\n")
+
+    tk.Button(page3, text="Log Usage", command=log_usage, bg="#f4a6a6").pack(pady=10)
+
+    display_box = tk.Text(page3, height=20, width=70)
+    display_box.pack(pady=10)
+    update_display()
+
+    tk.Button(page3, text="Home", command=page3.destroy, bg="#f4a6a6").pack(pady=10)
 
 # main page 
 tk.Label(root, text="Main Page", font=("Arial", 16, "bold")).pack(pady=20)
