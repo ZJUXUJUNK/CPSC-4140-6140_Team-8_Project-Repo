@@ -248,6 +248,16 @@ def open_page3():
 
     tk.Button(page3, text="Home", command=page3.destroy, bg="#f4a6a6").pack(pady=10)
 
+def open_page4():
+    page4 = tk.Toplevel(root)
+    page4.title("Saved Products")
+    page4.geometry("600x600")
+    tk.Label(page4, text="View your saved products", font=("Arial", 14, "bold")).pack(pady=20)
+
+
+
+
+
 # main page 
 tk.Label(root, text="Main Page", font=("Arial", 16, "bold")).pack(pady=20)
 quizButton = tk.Button(root, text="Take Skincare quiz", command=open_page1, width=20).pack(pady=5)
@@ -256,6 +266,7 @@ catalogueButton = tk.Button(root, text="Product Catalogue", command=open_page2, 
 #catalogueButton.place(x= 550, y= 900) #It dont work
 prodTrackerButton = tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20).pack(pady=5)
 #prodTrackerButton.place(x = 600, y = 900) #It dont work
+savedProdButton = tk.Button(root, text="Saved Products", command = open_page4, width=20).pack(pady=5)
 
 # Run the app
 root.mainloop()
