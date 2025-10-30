@@ -5,12 +5,43 @@ from tkinter import messagebox
 from PIL import Image, ImageTk
 
 
-#this is the main window for our app
+# #this is the main window for our app
+# root = tk.Tk()
+# root.title("Home page")
+# root.geometry("1000x1000")
+# #this is to set a light blue background 
+# root.configure(bg="#b3e5fc")
+
 root = tk.Tk()
-root.title("Home page")
-root.geometry("1000x1000")
-#this is to set a light blue background 
-root.configure(bg="#b3e5fc")
+root.title("Skinovate Skincare Assistant")
+root.geometry("800x600")
+root.configure(bg="#f9f9fb")
+
+
+header_frame = tk.Frame(root, bg="#b3e5fc", height=150)
+header_frame.pack(fill="x")
+
+tk.Label(
+    header_frame,
+    text="Skinovate Skincare Assistant",
+    font=("Helvetica", 26, "bold"),
+    bg="#b3e5fc",
+    fg="#333"
+).pack(pady=(40, 5))
+
+tk.Label(
+    header_frame,
+    text="Your daily skincare tracker",
+    font=("Helvetica", 14),
+    bg="#b3e5fc",
+    fg="#555"
+).pack()
+
+
+
+
+
+
 
 # appends quiz results to JSON file
 
