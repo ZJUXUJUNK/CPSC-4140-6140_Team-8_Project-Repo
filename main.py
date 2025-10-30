@@ -171,11 +171,11 @@ def open_page3():
 # main page 
 tk.Label(root, text="Main Page", font=("Arial", 16, "bold")).pack(pady=20)
 quizButton = tk.Button(root, text="Take Skincare quiz", command=open_page1, width=20).pack(pady=5)
-quizButton.place(x= 400, y= 900) #It dont work
+#quizButton.place(x= 400, y= 900) #It dont work
 catalogueButton = tk.Button(root, text="Product Catalogue", command=open_page2, width=20).pack(pady=5)
-catalogueButton.place(x= 550, y= 900) #It dont work
+#catalogueButton.place(x= 550, y= 900) #It dont work
 prodTrackerButton = tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20).pack(pady=5)
-prodTrackerButton.place(x = 600, y = 900) #It dont work
+#prodTrackerButton.place(x = 600, y = 900) #It dont work
 
 # Run the app
 root.mainloop()
