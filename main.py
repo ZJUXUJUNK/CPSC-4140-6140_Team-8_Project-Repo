@@ -2,7 +2,7 @@ import tkinter as tk
 import json 
 import datetime
 from tkinter import messagebox
-#from PIL import Image, ImageTk
+from PIL import Image, ImageTk
 
 
 # #this is the main window for our app
@@ -305,6 +305,16 @@ def open_page4():
     page4.title("Saved Products")
     page4.geometry("600x600")
     tk.Label(page4, text="View your saved products", font=("Arial", 14, "bold")).pack(pady=20)
+    ImPath1 = "https://m.media-amazon.com/images/I/51DbQev1thL._SL1000_.jpg"
+    orginImage = Image.open(ImPath1)
+    tkintIMG1 = ImageTk.PhotoImage(orginImage)
+    IMG1Label = tk.Label(root, image= tkintIMG1)
+    IMG1Label.grid(row=0, column=0, padx=10, pady = 10)
+
+
+
+
+    
 
 
 
