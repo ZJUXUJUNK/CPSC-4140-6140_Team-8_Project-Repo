@@ -337,6 +337,11 @@ catalogueButton = tk.Button(root, text="Product Catalogue", command=open_page2, 
 prodTrackerButton = tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
 savedProdButton = tk.Button(root, text="Saved Products", command=open_page4, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
 
+# copyright to let user know which team we are at the bottom
+tk.Label(root, text="© 2025 Skinovate | Designed by Team 8 TBD!", font=("Arial", 10), bg="white", fg="#555").pack(side="bottom", pady=10)
+
+
+
 
 # Run the app
 root.mainloop()
