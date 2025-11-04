@@ -16,5 +16,11 @@
         "skin_type": "oily",
         "advice": "At your age, hydration and SPF are key!",
         "timestamp": "2025-10-30 17:19:30"
+    },
+    {
+        "username": "User",
+        "skin_type": "dry",
+        "advice": "At your age, hydration and SPF are key!",
+        "timestamp": "2025-11-04 16:19:31"
     }
 ]
