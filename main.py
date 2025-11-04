@@ -72,10 +72,34 @@ def save_results(username,skin_type, advice):
     
     print("Your results were saved!")
 
+def create_navbar(parent):
+    nav = tk.Frame(parent, bg="#b3e5fc", height=50)
+    nav.pack(fill="x")
+
+    # Navigation buttons
+    tk.Button(nav, text="Home", command=parent.destroy,
+              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
+
+    tk.Button(nav, text="View Results", command=view_quiz,
+              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
+
+    tk.Button(nav, text="Product Tracker", command=open_page3,
+              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
+
+    tk.Button(nav, text="Quiz", command=open_page1,
+              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
+
 # Opening the skin care quiz page
 def open_page1():
     page1 = tk.Toplevel(root)
     page1.title("Skincare Quiz")
+
+    # navigation
+    create_navbar(page1)
     
 
     #this is like the intro to the app
@@ -240,6 +264,10 @@ def open_page1():
 def open_page2():
     page2 = tk.Toplevel(root)
     page2.title("Product Recommendations")
+
+    # nav bar function call
+    create_navbar(page2)
+
     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
     tk.Button(page2, text="Home", command=page2.destroy).pack()
     frame = tk.Frame(page2)
@@ -318,6 +346,9 @@ def open_page3():
     page3.title("Skincare Usage Tracker")
     page3.geometry("600x600")
     page3.configure(bg="#f0f4f8")  # light blue background to match the theme
+
+    # add nav bar
+    create_navbar(page3)
 
     # create a header section that stands out
     header_frame = tk.Frame(page3, bg="#4a90e2", height=80)
@@ -418,8 +449,83 @@ def open_page4():
     page4 = tk.Toplevel(root)
     page4.title("Saved Products")
     page4.geometry("600x600")
+
+    # add navigation bar
+    create_navbar(page4)
+    
     tk.Label(page4, text="View your saved products", font=("Arial", 14, "bold")).pack(pady=20)
 
+
+def view_quiz():
+    page = tk.Toplevel(root)
+    page.title("View your quiz results!")
+    page.geometry("600x600")
+    page.configure(bg="#f9f9fb")
+
+    # acts as the header
+    header = tk.Frame(page, bg="#4a90e2", height=80)
+    header.pack(fill="x")
+
+    tk.Label (
+        header,
+        text= "View previous quiz results!",
+        font=("Arial", 18, "bold"),
+        bg="#4a90e2",
+        fg="white"
+    ).pack(pady=20)
+
+    #load saved quiz results
+    try:
+
+        with open("results.json", "r") as f:
+            data = json.load(f)
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = []
+    
+    # check if there is no data
+    if not data:
+        tk.Label(page, text="No quiz results found!", font=("Arial", 13, "bold"), bg="#f9f9fb", fg="#4a90e2").pack(pady=15)
+        tk.Button(page, text="Home", command=page.destroy, bg="#4a90e2", fg="white", font=("Arial", 11, "bold")).pack(pady=15)
+        return
+    
+    #results area
+    area = tk.Canvas(page, bg="#f9f9fb", highlightthickness=0)
+    area.pack_propagate(False)
+    scroll_bar = tk.Scrollbar(page, orient="vertical", command=area.yview)
+    scroll_frame = tk.Frame(area, bg="#f9f9fb")
+
+    scroll_frame.bind("<Configure>", lambda e: area.configure(scrollregion=area.bbox("all")))
+    area.create_window((0,0), window = scroll_frame, anchor="nw")
+    area.configure(yscrollcommand=scroll_bar.set)
+
+    # display results
+    for q in reversed(data):
+        quiz_text = (
+            f"User: {q['username']}\n"
+            f"Skin Type: {q['skin_type'].capitalize()}\n"
+            f"Advice: {q['advice']}\n"
+            f"Date: {q['timestamp']}\n"
+        )
+
+        tk.Label(
+            scroll_frame,
+            text=quiz_text,
+            justify= "left",
+            bg= "#ffffff",
+            fg="#333",
+            font=("Arial", 12),
+            relief="solid",
+            wraplength=550,
+            padx=10,
+            pady=5
+        ).pack(pady=5, fill="x", padx=10)
+    
+    area.pack(side="left", fill="both", expand=True)
+    scroll_bar.pack(side="right", fill="y")
+
+    #home button
+    tk.Button(page, text="Home", command=page.destroy, bg="#4a90e2", fg="white", font=("Arial", 12, "bold")).pack(pady=15)
 
 
 
@@ -446,6 +552,7 @@ quizButton = tk.Button(root, text="Take Skincare quiz", command=open_page1, widt
 catalogueButton = tk.Button(root, text="Product Catalogue", command=open_page2, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
 prodTrackerButton = tk.Button(root, text="Skincare Product Tracker", command=open_page3, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
 savedProdButton = tk.Button(root, text="Saved Products", command=open_page4, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
+resultsButton= tk.Button(root, text="View Quiz Results", command=view_quiz, width=20, bg="#4a90e2", fg="#4a90e2").pack(pady=5)
 
 # copyright to let user know which team we are at the bottom
 tk.Label(root, text="© 2025 Skinovate | Designed by Team 8 TBD!", font=("Arial", 10), bg="white", fg="#555").pack(side="bottom", pady=10)
