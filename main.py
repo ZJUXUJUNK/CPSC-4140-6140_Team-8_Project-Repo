@@ -188,12 +188,60 @@ def open_page1():
 
 
 
+# # this opens the product recommendation page
+# def open_page2():
+#     page2 = tk.Toplevel(root)
+#     page2.title("Product Recommendations")
+#     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
+#     tk.Button(page2, text="home", command=page2.destroy).pack()
+#     frame = tk.Frame(page2)
+#     frame.pack(padx=20, pady=20)
+
+#     image_paths = [
+#         "images/DrySensitiveStep1.jpg",
+#         "images/DrySensitiveStep2.jpg",
+#         "images/DrySensitiveStep3.jpg",
+#         "images/DrySensitiveStep4.jpg",
+#         "images/DrySensitiveOlder25.jpg",
+#         "images/CetaphilOily.jpg",
+#         "images/MixedOlder25.jpg",
+#         "images/NormalStep1.jpg",
+#         "images/NormalStep2.jpg",
+#         "images/NormalStep3.jpg",
+#         "images/NormalStep4.jpg",
+#         "images/OilyStep1.jpg",
+#         "images/OilyStep2.jpg",
+#         "images/OilyStep3.jpg",
+#         "images/OilyStep4.jpg",
+#         "images/OilyOlder25.jpg"
+#     ]
+
+    
+#     imgs = []
+    
+#     columns = 4
+
+#     for i, path in enumerate(image_paths):
+#         img = Image.open(path)
+#         img = img.resize((150, 150)) 
+#         tk_img = ImageTk.PhotoImage(img)
+#         imgs.append(tk_img)
+
+#         label = tk.Label(frame, image=tk_img)
+#         label.grid(row=i // columns, column=i % columns, padx=10, pady=10)
+
+#     # keep a reference to all images 
+#     frame.images = imgs
+
+        
+        
+
 # this opens the product recommendation page
 def open_page2():
     page2 = tk.Toplevel(root)
     page2.title("Product Recommendations")
     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
-    tk.Button(page2, text="home", command=page2.destroy).pack()
+    tk.Button(page2, text="Home", command=page2.destroy).pack()
     frame = tk.Frame(page2)
     frame.pack(padx=20, pady=20)
 
@@ -215,24 +263,52 @@ def open_page2():
         "images/OilyStep4.jpg",
         "images/OilyOlder25.jpg"
     ]
+
+    product_names = [
+        "CeraVe Hydrating Facial Cleanser",
+        "Thayers Alcohol-Free Rose Petal Toner",
+        "The Ordinary Hyaluronic Acid 2% + B5",
+        "Nivea Soft Moisturizing Cream",
+        "The Ordinary Retinol 0.2% in Squalane",
+        "Cetaphil Daily Facial Cleanser",
+        "CeraVe Resurfacing Retinol Serum",
+        "Cetaphil Daily Facial Cleanser",
+        "e.l.f. Keep Your Balance Toner",
+        "Good Molecules Niacinamide Brightening Toner",
+        "e.l.f. Holy Hydration Face Cream SPF 30",
+        "ANUA Heartleaf Deep Cleansing Foam",
+        "BYOMA Hydrating Milky Toner",
+        "The Ordinary Niacinamide 10% + Zinc 1%",
+        "Cetaphil Oil Absorbing Moisturizer SPF 30",
+        "The Ordinary Retinol 1% in Squalane"
+    ]
+
     imgs = []
     columns = 4
 
-    for i, path in enumerate(image_paths):
-        img = Image.open(path)
-        img = img.resize((150, 150)) 
-        tk_img = ImageTk.PhotoImage(img)
-        imgs.append(tk_img)
+    for i, (path, name) in enumerate(zip(image_paths, product_names)):
+        try:
+            img = Image.open(path)
+            img = img.resize((150, 150))
+            tk_img = ImageTk.PhotoImage(img)
+            imgs.append(tk_img)
 
-        label = tk.Label(frame, image=tk_img)
-        label.grid(row=i // columns, column=i % columns, padx=10, pady=10)
+            product_frame = tk.Frame(frame, padx=10, pady=10)
+            product_frame.grid(row=i // columns, column=i % columns)
 
-    # keep a reference to all images 
+            # show the image
+            label = tk.Label(product_frame, image=tk_img)
+            label.pack()
+
+            # show the product name under it
+            name_label = tk.Label(product_frame, text=name, wraplength=150, justify="center", font=("Arial", 10, "bold"))
+            name_label.pack(pady=5)
+
+        except Exception as e:
+            print(f"Error loading {path}: {e}")
+
+    # keep references so images don't get garbage-collected
     frame.images = imgs
-
-        
-        
-
 
 
 
