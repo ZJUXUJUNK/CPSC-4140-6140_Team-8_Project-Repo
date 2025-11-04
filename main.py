@@ -227,7 +227,7 @@ def open_page2():
         label = tk.Label(frame, image=tk_img)
         label.grid(row=i // columns, column=i % columns, padx=10, pady=10)
 
-    # keep a reference to all images
+    # keep a reference to all images 
     frame.images = imgs
 
         
