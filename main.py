@@ -194,11 +194,44 @@ def open_page2():
     page2.title("Product Recommendations")
     tk.Label(page2, text="Here are some products for your skin type!", font=("Arial", 14)).pack(pady=30)
     tk.Button(page2, text="home", command=page2.destroy).pack()
-    ImPath1 = "images/DrySensitiveStep1.jpg"
-    orginImage = Image.open(ImPath1)
-    tkintIMG1 = ImageTk.PhotoImage(orginImage)
-    IMG1Label = tk.Label(root, image= tkintIMG1)
-    IMG1Label.grid(row=0, column=0, padx=10, pady = 10)
+    frame = tk.Frame(page2)
+    frame.pack(padx=20, pady=20)
+
+    image_paths = [
+        "images/DrySensitiveStep1.jpg",
+        "images/DrySensitiveStep2.jpg",
+        "images/DrySensitiveStep3.jpg",
+        "images/DrySensitiveStep4.jpg",
+        "images/DrySensitiveOlder25.jpg",
+        "images/CetaphilOily.jpg",
+        "images/MixedOlder25.jpg",
+        "images/NormalStep1.jpg",
+        "images/NormalStep2.jpg",
+        "images/NormalStep3.jpg",
+        "images/NormalStep4.jpg",
+        "images/OilyStep1.jpg",
+        "images/OilyStep2.jpg",
+        "images/OilyStep3.jpg",
+        "images/OilyStep4.jpg",
+        "images/OilyOlder25.jpg"
+    ]
+    imgs = []
+    columns = 4
+
+    for i, path in enumerate(image_paths):
+        img = Image.open(path)
+        img = img.resize((150, 150)) 
+        tk_img = ImageTk.PhotoImage(img)
+        imgs.append(tk_img)
+
+        label = tk.Label(frame, image=tk_img)
+        label.grid(row=i // columns, column=i % columns, padx=10, pady=10)
+
+    # keep a reference to all images
+    frame.images = imgs
+
+        
+        
 
 
 
