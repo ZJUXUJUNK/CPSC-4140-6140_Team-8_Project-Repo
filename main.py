@@ -78,19 +78,19 @@ def create_navbar(parent):
 
     # Navigation buttons
     tk.Button(nav, text="Home", command=parent.destroy,
-              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              bg="#4a90e2", fg="blue", font=("Arial", 10, "bold"),
               relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
 
     tk.Button(nav, text="View Results", command=view_quiz,
-              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              bg="#4a90e2", fg="blue", font=("Arial", 10, "bold"),
               relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
 
     tk.Button(nav, text="Product Tracker", command=open_page3,
-              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              bg="#4a90e2", fg="blue", font=("Arial", 10, "bold"),
               relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
 
     tk.Button(nav, text="Quiz", command=open_page1,
-              bg="#4a90e2", fg="white", font=("Arial", 10, "bold"),
+              bg="#4a90e2", fg="blue", font=("Arial", 10, "bold"),
               relief="flat", padx=10, pady=5).pack(side="right", padx=5, pady=5)
 
 # Opening the skin care quiz page
