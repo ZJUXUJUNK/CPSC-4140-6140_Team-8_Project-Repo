@@ -236,7 +236,7 @@ class CalendarHomeFrame(tk.Frame):
         header = tk.Frame(list_card_inner, bg=SURFACE)
         header.pack(fill="x", padx=8, pady=(8, 4))
         tk.Label(header, text="Products", bg=SURFACE, fg=TXT, font=("Segoe UI", 12, "bold")).pack(side="left")
-        PillButton(header, "Add", primary=True, command=self.add_product_dialog).pack(side="right")
+        PillButton(header, "Add", primary=True, fg= "black", command=self.add_product_dialog).pack(side="right")
 
         # 可滚动列表区域（高度固定，超出滚动）
         self.scroll = VScrollFrame(list_card_inner, height=220, bg=SURFACE)
@@ -514,7 +514,7 @@ class CalendarHomeFrame(tk.Frame):
     def remove_product_dialog(self):
         if not self.pm.products:
             messagebox.showinfo("Remove", "No products to remove."); return
-        dlg = tk.Toplevel(self); dlg.title("Remove product"); dlg.configure(bg=SURFACE)
+        dlg = tk.Toplevel(self); dlg.title("Remove product", fg="black"); dlg.configure(bg=SURFACE)
         tk.Label(dlg, text="Select products to remove:", bg=SURFACE).pack(padx=10, pady=8)
         vars_ = {}
         for pid, p in self.pm.products.items():
@@ -759,27 +759,27 @@ class ProductsFrame(tk.Frame):
         q3=tk.StringVar(value="none"); q4=tk.StringVar(value="none")
         q5=tk.StringVar(value="none"); q6=tk.StringVar(value="none")
 
-        tk.Label(dlg, text="How does your skin feel before washing or applying product?", bg=SURFACE).pack(anchor="w", padx=10)
+        tk.Label(dlg, text="How does your skin feel before washing or applying product?",fg= "black", bg=SURFACE).pack(anchor="w", padx=10)
         for txt, val in [("Tight / dry","dry"),("Oily","oily"),("Normal","normal")]:
-            tk.Radiobutton(dlg, text=txt, variable=q1, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q1, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
-        tk.Label(dlg, text="How does your skin feel after washing?", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
+        tk.Label(dlg, text="How does your skin feel after washing?", fg= "black", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
         for txt, val in [("Tight / dry","dry"),("Oily","oily"),("Normal","normal")]:
-            tk.Radiobutton(dlg, text=txt, variable=q2, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q2, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
-        tk.Label(dlg, text="By the end of the day, your skin looks…", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
+        tk.Label(dlg, text="By the end of the day, your skin looks…", fg= "black", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
         for txt, val in [("Flaky / rough","dry"),("Greasy","oily"),("Matte","normal")]:
-            tk.Radiobutton(dlg, text=txt, variable=q3, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q3, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
-        tk.Label(dlg, text="How often do you get breakouts?", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
+        tk.Label(dlg, text="How often do you get breakouts?",fg= "black", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
         for txt, val in [("Rarely","dry"),("Sometimes","normal"),("Often","oily")]:
-            tk.Radiobutton(dlg, text=txt, variable=q4, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q4, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
-        tk.Label(dlg, text="What is your age group?", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
+        tk.Label(dlg, text="What is your age group?", fg= "black", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
         for txt, val in [("Under 18","teen"),("18–25","young_adult"),("26–40","adult"),("41+","mature")]:
-            tk.Radiobutton(dlg, text=txt, variable=q5, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q5, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
-        tk.Label(dlg, text="What do you most want to improve?", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
+        tk.Label(dlg, text="What do you most want to improve?", fg= "black", bg=SURFACE).pack(anchor="w", padx=10, pady=(6,0))
         for txt, val in [
             ("Reduce acne / breakouts","acne"),
             ("Control oil / shine","oil_control"),
@@ -788,7 +788,7 @@ class ProductsFrame(tk.Frame):
             ("Soothing sensitivity / redness","sensitivity"),
             ("Anti-aging (fine lines / firmness)","antiaging")
         ]:
-            tk.Radiobutton(dlg, text=txt, variable=q6, value=val, bg=SURFACE).pack(anchor="w", padx=20)
+            tk.Radiobutton(dlg, text=txt, variable=q6, value=val, fg= "black", bg=SURFACE).pack(anchor="w", padx=20)
 
         def submit():
             answers = [q1.get(), q2.get(), q3.get(), q4.get(), q5.get(), q6.get()]
@@ -808,7 +808,7 @@ class ProductsFrame(tk.Frame):
             messagebox.showinfo("Quiz result", f"Skin type: {skin_type}\nGoal: {q6.get().replace('_',' ')}")
             dlg.destroy(); self.clean_and_render()
 
-        PillButton(dlg, "Submit", primary=True, command=submit).pack(pady=10)
+        PillButton(dlg, "Submit", primary=True, fg= "black", command=submit).pack(pady=10)
         dlg.grab_set(); dlg.wait_window()
 
     def seed_recommendations(self):
