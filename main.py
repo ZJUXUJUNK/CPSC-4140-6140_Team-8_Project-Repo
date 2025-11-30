@@ -262,6 +262,8 @@ def open_page1():
 
 # this opens the product recommendation page
 def open_page2():
+
+    
     page2 = tk.Toplevel(root)
     page2.title("Product Recommendations")
 
