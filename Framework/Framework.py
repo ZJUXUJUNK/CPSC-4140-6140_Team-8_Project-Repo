@@ -236,7 +236,7 @@ class CalendarHomeFrame(tk.Frame):
         header = tk.Frame(list_card_inner, bg=SURFACE)
         header.pack(fill="x", padx=8, pady=(8, 4))
         tk.Label(header, text="Products", bg=SURFACE, fg=TXT, font=("Segoe UI", 12, "bold")).pack(side="left")
-        PillButton(header, "Add", primary=True, command=self.add_product_dialog).pack(side="right")
+        PillButton(header, "Add", primary=True, fg= "black", command=self.add_product_dialog).pack(side="right")
 
         # 可滚动列表区域（高度固定，超出滚动）
         self.scroll = VScrollFrame(list_card_inner, height=220, bg=SURFACE)
@@ -514,7 +514,7 @@ class CalendarHomeFrame(tk.Frame):
     def remove_product_dialog(self):
         if not self.pm.products:
             messagebox.showinfo("Remove", "No products to remove."); return
-        dlg = tk.Toplevel(self); dlg.title("Remove product"); dlg.configure(bg=SURFACE)
+        dlg = tk.Toplevel(self); dlg.title("Remove product", fg="black"); dlg.configure(bg=SURFACE)
         tk.Label(dlg, text="Select products to remove:", bg=SURFACE).pack(padx=10, pady=8)
         vars_ = {}
         for pid, p in self.pm.products.items():
@@ -808,7 +808,7 @@ class ProductsFrame(tk.Frame):
             messagebox.showinfo("Quiz result", f"Skin type: {skin_type}\nGoal: {q6.get().replace('_',' ')}")
             dlg.destroy(); self.clean_and_render()
 
-        PillButton(dlg, "Submit", primary=True, command=submit).pack(pady=10)
+        PillButton(dlg, "Submit", primary=True, fg= "black", command=submit).pack(pady=10)
         dlg.grab_set(); dlg.wait_window()
 
     def seed_recommendations(self):
